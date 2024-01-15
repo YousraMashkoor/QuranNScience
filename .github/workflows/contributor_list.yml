@@ -16,6 +16,6 @@ jobs:
           max_contributors: 1000 # Default: 10
           # This enables showing contribution numbers on the README.
           # ⚠️ THIS WILL PUSH TO THE REPO AFTER EVERY COMMIT ⚠️
-          show_numbers: true # Default: false
+          show_numbers: false # Default: false
           # Markdown heading level for the contributors section
           header_level: 5 # Default: 2
