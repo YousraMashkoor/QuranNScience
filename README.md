@@ -42,9 +42,9 @@ npm start
 ### 👥 Contributors
 
 
-- **[@MuhammadSaadSiddique](https://github.com/MuhammadSaadSiddique)** (3 contributions)
+- **[@MuhammadSaadSiddique](https://github.com/MuhammadSaadSiddique)** 
 
-- **[@YousraMashkoor](https://github.com/YousraMashkoor)** (1 contribution)
+- **[@YousraMashkoor](https://github.com/YousraMashkoor)** 
 
 <!-- DO NOT REMOVE - contributor_list:end -->
 <!-- prettier-ignore-end -->
