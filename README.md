@@ -1,4 +1,4 @@
-<!-- DO NOT REMOVE - contributor_list:data:start:["MuhammadSaadSiddique", "YousraMashkoor"]:end -->
+<!-- DO NOT REMOVE - contributor_list:data:start:["MuhammadSaadSiddique", "Jaweria-B", "YousraMashkoor"]:end -->
 ## Setup your Environment
 
 navigate to backend folder and run the following commands
@@ -39,12 +39,14 @@ npm start
 
 <!-- prettier-ignore-start -->
 <!-- DO NOT REMOVE - contributor_list:start -->
-### 👥 Contributors
+##### 👥 Contributors
 
 
-- **[@MuhammadSaadSiddique](https://github.com/MuhammadSaadSiddique)** 
+- **[@MuhammadSaadSiddique](https://github.com/MuhammadSaadSiddique)**
 
-- **[@YousraMashkoor](https://github.com/YousraMashkoor)** 
+- **[@Jaweria-B](https://github.com/Jaweria-B)**
+
+- **[@YousraMashkoor](https://github.com/YousraMashkoor)**
 
 <!-- DO NOT REMOVE - contributor_list:end -->
 <!-- prettier-ignore-end -->
