@@ -1,16 +1,20 @@
-import {Routes, Route} from 'react-router-dom';
-import { Fragment } from 'react';
+import { Routes, Route } from "react-router-dom";
+import { Fragment, Suspense, lazy } from "react";
 
-import ButtonAppBar from './components/AppBar/AppBar';
-import Home from './routes/HomePage/Home';
+import ButtonAppBar from "./components/AppBar/index";
+import Loading from "./components/Loading";
+
+const Home = lazy(() => import("./routes/HomePage/index"));
 
 function App() {
   return (
     <Fragment>
-      <ButtonAppBar/>
-      <Routes>
-        <Route index path="/" element={<Home/>}/>
-      </Routes>
+      <ButtonAppBar />
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route index path="/" element={<Home />} />
+        </Routes>
+      </Suspense>
     </Fragment>
   );
 }
