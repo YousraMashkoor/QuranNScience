@@ -1,27 +1,14 @@
 import { useState } from "react";
-
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Menu, MenuItem } from "@mui/material";
+import { ArrowIcon, DownArrow } from "./styles";
 
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import styled from "styled-components";
-
-const DownArrow = styled(KeyboardArrowDownIcon)`
-  margin-left: 0 !important;
-`;
-const ArrowIcon = styled(ArrowOutwardIcon)`
-  margin-left: 0 !important;
-  margin-right: 20px;
-  padding-left: 0;
-`;
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const open = anchorEl;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -56,9 +43,9 @@ export default function ButtonAppBar() {
           </Button>
           <DownArrow onClick={handleClick} />
           <Menu
-            anchorEl={open}
+            anchorEl={anchorEl}
             keepMounted
-            open={open}
+            open={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
               vertical: "bottom",
