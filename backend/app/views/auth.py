@@ -11,54 +11,68 @@ class Register(Resource):
         def __init__(self):
             super().__init__()
             self.schema = {
-                'email': {'type': 'string', 'required': True, 'unique_email': True},
-                'password': {'type': 'string', 'required': True},
-                'username': {'type': 'string', 'required': True}
+                "email": {"type": "string", "required": True, "unique_email": True},
+                "password": {"type": "string", "required": True},
+                "username": {"type": "string", "required": True},
+                "phoneNumber": {"type": "string", "required": False},
+                "bio": {"type": "string", "required": False},
+                "type": {"type": "integer", "required": True},
             }
-            self.rules.update({'unique_email': self._validate_unique_email})
+            self.rules.update({"unique_email": self._validate_unique_email})
 
         def _validate_unique_email(self, constraint, field, value):
             if constraint and User.query.filter_by(email=value).first():
-                self._error(field, 'User with that email already exists')
-    
+                self._error(field, "User with that email already exists")
+
     def post(self):
 
-        validator = Register.InputValidator({
-            'email': {'type': 'string', 'required': True, 'unique_email': True},
-            'password': {'type': 'string', 'required': True},
-            'username': {'type': 'string', 'required': True}
-        })
+        validator = Register.InputValidator(
+            {
+                "email": {"type": "string", "required": True, "unique_email": True},
+                "password": {"type": "string", "required": True},
+                "username": {"type": "string", "required": True},
+                "phoneNumber": {"type": "string", "required": False},
+                "bio": {"type": "string", "required": False},
+                "type": {"type": "integer", "required": True},
+            }
+        )
 
         if not validator.validate(request.json):
-            return {'message': 'Invalid request data', 'errors': validator.errors}, 400
-        email = request.json.get('email')
-        password = request.json.get('password')
-        username = request.json.get('username')    
+            return {"message": "Invalid request data", "errors": validator.errors}, 400
+        email = request.json.get("email")
+        password = request.json.get("password")
+        username = request.json.get("username")
+        phoneNumber = request.json.get("phoneNumber")
+        bio = request.json.get("bio")
+        type = request.json.get("type")
 
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password, method="sha256")
 
         try:
             user = User(
-                email=email, 
-                username=username, 
-                password=hashed_password
+                email=email,
+                username=username,
+                password=hashed_password,
+                phoneNumber=phoneNumber,
+                bio=bio,
+                type=type,
             )
             db.session.add(user)
             db.session.commit()
         except Exception:
-            return {'message': 'An unexpected error occured'}, 500
+            return {"message": "An unexpected error occured"}, 500
 
-        return {'message': 'Resource created successfully.',
-                'id': user.id}, 201
+        return {"message": "Resource created successfully.", "id": user.id}, 201
+
 
 class Login(Resource):
     def post(self):
-        email = request.json.get('email')
-        password = request.json.get('password')
+        email = request.json.get("email")
+        password = request.json.get("password")
 
         user = User.query.filter_by(email=email).first()
 
         if user and user.check_password(password):
-            return {'status': 'success'}
+            return {"status": "success"}
         else:
-            return {'status': 'error'}
+            return {"status": "error"}
