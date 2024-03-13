@@ -1,6 +1,5 @@
 from app import db
-
-
+import datetime
 class Verification(db.Model):
     __tablename__ = "Verification"
     
@@ -8,7 +7,7 @@ class Verification(db.Model):
     Verifier1 = db.Column(db.Integer, db.ForeignKey('user.id'))
     Verifier2 = db.Column(db.Integer, db.ForeignKey('user.id'))
     Verifier3 = db.Column(db.Integer, db.ForeignKey('user.id'))
-    verifyDate = db.Column(db.Date, nullable=False)
+    verifyDate = db.Column(db.Date, nullable=False, default=datetime.datetime.now())
     status = db.Column(db.String(120), nullable=False)# status(pending,underreview,processed)
    
     def __init__(self, Verifier1, Verifier2, Verifier3, verifyDate, status):
@@ -26,4 +25,4 @@ class Verification(db.Model):
             "verifyDate": self.verifyDate,
             "status": self.status,
         }
-        
+    
