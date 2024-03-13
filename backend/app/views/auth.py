@@ -5,13 +5,26 @@ from app.models.user import User
 from app import db
 from cerberus import Validator
 
+# class CustomValidator(Validator):
+#   def _validate_iscustomvalid(self, iscustomvalid, field, value):
 
+#     "{'type': 'boolean'}" # <-- this was missing: schema of rule argument
+
+#     if iscustomvalid and re.match(r'^\d{4}$', value) == None:
+#       self._error(field, 'Must have format [0-9]{4}')
+
+# schema = {
+#   'somefield': {
+#     'iscustomvalid': True # <-- rule argument: {'type': 'boolean'}
+#   },
+# }
 class Register(Resource):
+    
     class InputValidator(Validator):
         def __init__(self):
             super().__init__()
             self.schema = {
-                "email": {"type": "string", "required": True, "unique_email": True},
+                "email": {"type": "string", "required": True, "unique": True},
                 "password": {"type": "string", "required": True},
                 "username": {"type": "string", "required": True},
                 "phoneNumber": {"type": "string", "required": False},
@@ -28,7 +41,7 @@ class Register(Resource):
 
         validator = Register.InputValidator(
             {
-                "email": {"type": "string", "required": True, "unique_email": True},
+                "email": {"type": "string", "required": True, "unique": True},
                 "password": {"type": "string", "required": True},
                 "username": {"type": "string", "required": True},
                 "phoneNumber": {"type": "string", "required": False},

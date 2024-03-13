@@ -26,3 +26,14 @@ class User(db.Model):
         self.username = phoneNumber
         self.bio = bio
         self.type = type
+    def tojson(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "username": self.username,
+            "phoneNumber": self.phoneNumber,
+            "bio": self.bio,
+            "type": self.type,
+        }
+    def __str__(self):
+        return f"<User Email {self.email}>"

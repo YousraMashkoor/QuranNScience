@@ -7,9 +7,9 @@ class Surah(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     arabicName = db.Column(db.String(120), nullable=False)
-    totalAyat = db.Column(db.integer(), nullable=False, default=1)
-    totalLetters = db.Column(db.integer(), nullable=False, default=1)
-    abjadNumber = db.Column(db.integer(), nullable=False, default=1)
+    totalAyat = db.Column(db.Integer, nullable=False, default=1)
+    totalLetters = db.Column(db.Integer, nullable=False, default=1)
+    abjadNumber = db.Column(db.Integer, nullable=False, default=1)
     # meaningId = db.Column(db.Integer, db.ForeignKey('meaning.id'))
     # meaning = db.relationship("meaning", backref=backref("meaning", uselist=False))
     # verifyId = db.Column(db.Integer, db.ForeignKey('verify.id'))
@@ -54,3 +54,18 @@ class Surah(db.Model):
         # self.verify = verify
         # self.pageId = pageId
         # self.page = page
+    def tojson(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "arabicName": self.arabicName,
+            "totalAyat": self.totalAyat,
+            "totalLetters": self.totalLetters,
+            "abjadNumber": self.abjadNumber,
+            # "meaningId": self.meaningId,
+            # "meaning": self.meaning,
+            # "verifyId": self.verifyId,
+            # "verify": self.verify,
+            # "pageId": self.pageId,
+            # "page": self.page,
+        }
